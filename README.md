@@ -34,16 +34,14 @@ An ML-powered prediction system that:
 
 - **GitHub Repository**: [https://github.com/glenmiracle18/loadshedding-prediction-model](https://github.com/glenmiracle18/loadshedding-prediction-model)
 - **Live Demo**: [Coming Soon]
-- **Video Demo**: [Link to Video]
-- **Data source and models**: [https://drive.google.com/drive/folders/1f_IevZLn66jib7nBO6_Sya6LkI-ljkUX?usp=sharing]
+- **Video Demo**: [https://drive.google.com/drive/folders/1Owk6RRi4HaV7ry5fgZiBJLFtFBZjHvgY?usp=sharing](https://drive.google.com/drive/folders/1Owk6RRi4HaV7ry5fgZiBJLFtFBZjHvgY?usp=sharing)
+- **Data source and models**: [https://drive.google.com/drive/folders/1f_IevZLn66jib7nBO6_Sya6LkI-ljkUX?usp=sharing](https://drive.google.com/drive/folders/1f_IevZLn66jib7nBO6_Sya6LkI-ljkUX?usp=sharing)
 - **Project Documentation**: See `docs/` folder
 
 ---
 
 ##  System Architecture
 ![architecture](./docs/diagrams/system-architecture.png)
-
-
 ---
 
 ##  Setup Instructions
