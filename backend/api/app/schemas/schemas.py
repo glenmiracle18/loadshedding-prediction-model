@@ -39,7 +39,7 @@ class TokenData(BaseModel):
 
 class PredictionRequest(BaseModel):
     location: str
-    date_time: datetime
+    datetime: datetime
     temperature: Optional[float] = None
     humidity: Optional[float] = None
     wind_speed: Optional[float] = None
@@ -54,7 +54,7 @@ class PredictionResponse(BaseModel):
     confidence_score: float
     model_used: str
     location: str
-    date_time: datetime
+    datetime: datetime
     created_at: datetime
     
     model_config = ConfigDict(
@@ -65,7 +65,7 @@ class PredictionResponse(BaseModel):
 
 class HistoricalDataResponse(BaseModel):
     id: int
-    date_time: datetime
+    datetime: datetime
     location: str
     temperature: Optional[float]
     humidity: Optional[float]

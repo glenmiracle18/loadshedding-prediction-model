@@ -25,13 +25,13 @@ async def create_prediction(
         grid_data = await data_service.get_grid_status()
         historical_data = await data_service.get_historical_averages(
             prediction_request.location, 
-            prediction_request.date_time.hour
+            prediction_request.datetime.hour
         )
         
         # Prepare data for ML prediction
         ml_input = {
             "location": prediction_request.location,
-            "date_time": prediction_request.date_time.isoformat(),
+            "datetime": prediction_request.datetime.isoformat(),
             "temperature": prediction_request.temperature or weather_data.get("temperature", 25.0),
             "humidity": prediction_request.humidity or weather_data.get("humidity", 60.0),
             "wind_speed": prediction_request.wind_speed or weather_data.get("wind_speed", 10.0),
@@ -47,7 +47,7 @@ async def create_prediction(
         db_prediction = Prediction(
             user_id=current_user.id,
             location=prediction_request.location,
-            date_time=prediction_request.date_time,
+            date_time=prediction_request.datetime,
             temperature=ml_input["temperature"],
             humidity=ml_input["humidity"],
             wind_speed=ml_input["wind_speed"],
@@ -180,13 +180,13 @@ async def create_batch_predictions(
             grid_data = await data_service.get_grid_status()
             historical_data = await data_service.get_historical_averages(
                 pred_request.location, 
-                pred_request.date_time.hour
+                pred_request.datetime.hour
             )
             
             # Prepare ML input
             ml_input = {
                 "location": pred_request.location,
-                "date_time": pred_request.date_time.isoformat(),
+                "datetime": pred_request.datetime.isoformat(),
                 "temperature": pred_request.temperature or weather_data.get("temperature", 25.0),
                 "humidity": pred_request.humidity or weather_data.get("humidity", 60.0),
                 "wind_speed": pred_request.wind_speed or weather_data.get("wind_speed", 10.0),
@@ -202,7 +202,7 @@ async def create_batch_predictions(
             db_prediction = Prediction(
                 user_id=current_user.id,
                 location=pred_request.location,
-                date_time=pred_request.date_time,
+                date_time=pred_request.datetime,
                 temperature=ml_input["temperature"],
                 humidity=ml_input["humidity"],
                 wind_speed=ml_input["wind_speed"],

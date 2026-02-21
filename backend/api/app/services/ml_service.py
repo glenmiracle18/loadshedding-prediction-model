@@ -50,7 +50,7 @@ class MLService:
         """Prepare features for ML model prediction"""
         try:
             # Extract datetime features
-            dt = pd.to_datetime(data["date_time"])
+            dt = pd.to_datetime(data["datetime"])
             hour = dt.hour
             day_of_week = dt.dayofweek
             month = dt.month
@@ -148,7 +148,7 @@ class MLService:
             # Extract key metrics
             demand = data.get("demand_forecast", 30000)
             generation = data.get("generation_capacity", 28000)
-            dt = pd.to_datetime(data["date_time"])
+            dt = pd.to_datetime(data["datetime"])
             hour = dt.hour
             
             # Calculate deficit

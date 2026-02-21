@@ -4,7 +4,7 @@ from typing import Optional
 
 class Settings(BaseSettings):
     # Database
-    DATABASE_URL: str = "postgresql://postgres:password@localhost:5432/loadshedding_db"
+    DATABASE_URL: str = "sqlite:///./loadshedding.db"
     
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"
