@@ -44,6 +44,11 @@ class Prediction(Base):
     
     # Relationship with user
     user = relationship("User", back_populates="predictions")
+    
+    @property
+    def datetime(self):
+        """Map date_time to datetime for response schema compatibility"""
+        return self.date_time
 
 
 class HistoricalData(Base):
@@ -67,6 +72,11 @@ class HistoricalData(Base):
     actual_stage = Column(Integer, nullable=False)
     
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    @property
+    def datetime(self):
+        """Map date_time to datetime for response schema compatibility"""
+        return self.date_time
 
 
 class CostCalculation(Base):

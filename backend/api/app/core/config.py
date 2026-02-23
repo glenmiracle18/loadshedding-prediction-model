@@ -4,7 +4,7 @@ from typing import Optional
 
 class Settings(BaseSettings):
     # Database
-    DATABASE_URL: str = "postgresql://postgres:password@localhost:5432/loadshedding_db"
+    DATABASE_URL: str = "sqlite:///./loadshedding.db"
     
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"
@@ -19,11 +19,15 @@ class Settings(BaseSettings):
     GRID_API_URL: str = "https://api.gridwatch.co.za/api/v3/status"
     
     # ML Models
-    MODEL_PATH: str = "backend/api/models"
+    MODEL_PATH: str = "./models"
     CACHE_TTL: int = 300  # 5 minutes
     
     # CORS
     ALLOWED_ORIGINS: list = ["http://localhost:3000", "http://localhost:8080"]
+    
+    # Hugging Face
+    HUGGINGFACE_TOKEN: Optional[str] = None
+    HUGGINGFACE_REPO: str = "yaralexie/loadshedding-prediction-models"
     
     class Config:
         env_file = ".env"
