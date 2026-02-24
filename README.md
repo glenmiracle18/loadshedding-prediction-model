@@ -1,48 +1,194 @@
 # Load Shedding Prediction System
+**AI-powered load shedding forecasting for South Africa with 6-hour advance predictions**
 
-**Proactive AI-Powered Forecasting for South African Users**
+<img src="./result-assets/frontend/dashboard-image.png" alt="Dashboard" width="600">
 
-A machine learning-based web application that predicts load shedding stages 6 hours in advance, featuring a clean, minimalistic interface designed for optimal user experience.
+## Live Demo
+
+**[Live Application](https://your-app-url.com)** - View the deployed app  
+**[Demo Video](https://your-video-url.com)** - 5-minute walkthrough
+
+## Related Project Files
+
+**[Ethics Application](https://docs.google.com/document/d/1Fz0hdbDTruXiaq5irdVrov6ZJ2QfK-_eYMc8pzE9ptY/edit?usp=sharing)**  
+**[Project Proposal](https://docs.google.com/document/d/1ARsUzhEt2j8m2yG6vJi4TxHBKRzHJQHM/edit?usp=sharing&ouid=115036737062887834757&rtpof=true&sd=true)** 
+
+**[Test Results](https://drive.google.com/file/d/1lqaXin09EVi3_hX-J7KuysEQVeig4ubR/view?usp=sharing)**
+
+## Prerequisites
+
+- **Python**: 3.9 or higher
+- **Node.js**: 18 or higher  
+- **Git**: Latest version
 
 ---
 
-##  Project Overview
+## Machine Learning Excellence
 
-### Problem Statement
-South Africa experienced 335 days of load shedding in 2023, costing the economy R1 billion per day. Citizens and businesses face severe challenges:
-- Lost productivity during outages
-- High backup power costs (R18,000+ for generators)
-- Inability to plan daily activities effectively
-- Need for reliable advance warning systems
+Our AI-powered prediction system leverages advanced machine learning techniques specifically optimized for South African grid conditions. The models have been trained on extensive historical data to deliver industry-leading accuracy rates with real-time predictions.
 
-### Solution
-An AI-powered prediction system that:
-- **Forecasts** load shedding stages 6 hours ahead (92%+ accuracy)
-- **Analyzes** grid conditions and historical patterns
-- **Provides** clean, user-friendly web interface
-- **Calculates** backup power costs for different solutions
-- **Tracks** prediction history and accuracy
+### Model Performance & Accuracy
 
-### Key Results
-- **92.33% Random Forest Accuracy** - Best performing model
-- **91.80% XGBoost Accuracy** - Primary prediction model  
-- **6-hour lead time** - Sufficient for preparation
-- **51 optimized features** - Grid conditions, weather, temporal patterns
+**Random Forest Ensemble**: 92.33% accuracy - Our flagship model uses ensemble learning with 100+ decision trees, providing robust predictions across diverse grid conditions and seasonal variations.
+
+**XGBoost Gradient Boosting**: 91.80% accuracy - Advanced gradient boosting with regularization techniques, excellent for handling complex non-linear relationships in grid data.
+
+**LSTM Neural Network**: Deep learning architecture for capturing temporal dependencies in load shedding patterns, particularly effective during peak demand periods.
+
+### Advanced Feature Engineering
+
+Our prediction system analyzes **51 carefully engineered features** including:
+
+- **Grid Capacity Analysis**: Real-time generation vs demand ratios
+- **Weather Integration**: Temperature, humidity, wind patterns affecting energy consumption  
+- **Temporal Patterns**: Hour-of-day, day-of-week, seasonal variations
+- **Historical Trends**: Rolling averages and grid stress indicators
+- **Peak Demand Forecasting**: Predictive modeling for high-consumption periods
+
+### Model Results & Insights
+
+<div align="center">
+<img src="./result-assets/model/01_loadshedding_trends.png" alt="Load Shedding Trends" width="400">
+<img src="./result-assets/model/02_grid_stress_indicators.png" alt="Grid Stress Indicators" width="400">
+</div>
+
+<div align="center">
+<img src="./result-assets/model/03_correlation_heatmap.png" alt="Correlation Heatmap" width="350">
+<img src="./result-assets/model/04_temporal_patterns.png" alt="Temporal Patterns" width="350">
+</div>
+
+### Production-Ready ML Pipeline
+
+- **6-Hour Prediction Window**: Sufficient lead time for preparation and planning
+- **Hugging Face Hub Integration**: Scalable model hosting with automatic updates
+- **Real-time Feature Processing**: Live data ingestion and transformation
+- **Ensemble Voting**: Combines multiple models for maximum reliability
+- **Confidence Scoring**: Each prediction includes accuracy probability metrics
+
+---
+
+## Installation & Running — Backend
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/glenmiracle18/loadshedding-prediction-model.git
+   cd loadshedding-prediction-model
+   ```
+
+2. **Navigate to backend directory**
+   ```bash
+   cd backend/api
+   ```
+
+3. **Create virtual environment**
+   ```bash
+   python3 -m venv venv
+   ```
+
+4. **Activate virtual environment**
+   ```bash
+   # On macOS/Linux:
+   source venv/bin/activate
+   
+   # On Windows:
+   venv\Scripts\activate
+   ```
+
+5. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+6. **Start the backend server**
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+
+Backend runs on: **http://localhost:8000**  
+API Documentation: **http://localhost:8000/docs**
+
+## Installation & Running — Frontend
+
+1. **Navigate to frontend directory**
+   ```bash
+   cd frontend
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+Frontend runs on: **http://localhost:3000**
+
+## Environment Variables
+
+Create `.env` file in `backend/api/` directory:
+
+```bash
+# Security
+SECRET_KEY=your-super-secure-secret-key-here
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+# Database
+DATABASE_URL=sqlite:///./loadshedding.db
+
+# Redis Cache
+REDIS_URL=redis://localhost:6379/0
+
+# External APIs
+WEATHER_API_KEY=your-openweathermap-api-key
+GRID_API_URL=https://api.gridwatch.co.za/api/v3/status
+
+# ML Models
+MODEL_PATH=./models
+CACHE_TTL=300
+
+# Hugging Face (for ML models)
+HUGGINGFACE_TOKEN=your-huggingface-token
+HUGGINGFACE_REPO=yaralexie/loadshedding-prediction-models
+
+# CORS
+ALLOWED_ORIGINS=["http://localhost:3000","http://localhost:8080"]
+```
+
+### Required API Keys:
+- **OpenWeatherMap API Key**: Get from [openweathermap.org/api](https://openweathermap.org/api)
+- **Hugging Face Token**: Get from [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
+
+## Running the Tests
+
+```bash
+cd backend/api
+python3 run_tests.py
+```
 
 ---
 
 ## Features
 
-###  Core Functionality
+### Core Functionality
 - **AI Predictions**: Load shedding stage forecasting (0-8 stages) with confidence scores
-- **Simple Interface**: Clean, minimalistic design focusing on usability
+- **Real-time Data**: Weather integration and grid status monitoring
 - **User Authentication**: Secure JWT-based login with session management
-- **Prediction History**: Track and analyze your prediction accuracy
-- **Cost Calculator**: Compare backup solutions (generator, UPS, solar, battery)
+- **Prediction History**: Track and analyze your prediction accuracy with advanced filtering
+- **Cost Calculator**: Compare backup solutions (generator vs. pause operations)
+
+### User Experience
+- **Clean Interface**: Minimalistic design focusing on usability
+- **Mobile Responsive**: Works seamlessly across all devices
+- **Fast Performance**: Optimized with Redis caching and Hugging Face CDN
+- **Smart Notifications**: Session management and error handling
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React 19** - Modern React with latest features
@@ -60,141 +206,43 @@ An AI-powered prediction system that:
 - **XGBoost** - Gradient boosting framework (91.80% accuracy)
 - **Random Forest** - Ensemble learning method (92.33% accuracy)
 - **Scikit-learn** - Feature scaling and preprocessing
+- **Hugging Face Hub** - Model hosting and distribution
 - **51 Engineered Features** - Optimized for SA grid conditions
 
 ### Database & Deployment
-- **SQLite** - Lightweight database for development
-- **PostgreSQL** - Production database option
-- **Docker** - Containerized deployment ready
+- **SQLite** - Development database
+- **Redis** - High-performance caching
+- **Docker Ready** - Containerized deployment support
 
 ---
 
-##  Quick Start
+## ML Model Performance
 
-### Prerequisites
-- Python 3.9+
-- Node.js 18+
-- Git
-
-### 1. Clone Repository
-```bash
-git clone https://github.com/glenmiracle18/loadshedding-prediction-model.git
-cd loadshedding-prediction-model
-```
-
-### 2. Backend Setup
-```bash
-cd backend/api
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-Backend runs on: http://localhost:8000
-API Documentation: http://localhost:8000/docs
-
-### 3. Frontend Setup
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Frontend runs on: http://localhost:3000
-
-### 4. Access Application
-1. Open http://localhost:3000
-2. Register a new account or login
-3. Navigate to "Predict" to make load shedding predictions
-4. View your prediction history and use the cost calculator
-
----
-
-## 🎨 Design Philosophy
-
-### Clean & Minimalistic
-- **No Gradients or Shadows**: Clean, flat design approach
-- **White & Blue Theme**: Professional, easy on the eyes
-- **Essential Fields Only**: Simplified forms focusing on required information
-- **Single-Page Hero**: Streamlined homepage with key features
-
-### User Experience Focus
-- **Mobile-First**: Responsive design for all devices
-- **Fast Loading**: Optimized performance and minimal complexity
-- **Clear Navigation**: Intuitive menu structure
-- **Smart Notifications**: Informative alerts for session and error states
-
----
-
-## 📊 API Endpoints
-
-### Authentication
-- `POST /api/v1/auth/register` - User registration
-- `POST /api/v1/auth/login` - User login
-- `GET /api/v1/auth/me` - Get current user info
-
-### Predictions
-- `POST /api/v1/predictions/predict` - Create new prediction
-- `GET /api/v1/predictions/` - Get user prediction history
-- `DELETE /api/v1/predictions/{id}` - Delete prediction
-
-### System
-- `GET /api/v1/health` - System health check
-
----
-
-## 🧠 Machine Learning Models
-
-### Model Performance
 - **Random Forest**: 92.33% accuracy, robust ensemble method
 - **XGBoost**: 91.80% accuracy, gradient boosting with regularization
-- **Feature Engineering**: 51 optimized features including:
-  - Grid capacity and demand metrics
-  - Temporal patterns (hour, day, month, seasonality)
-  - Weather conditions (temperature, humidity, wind)
-  - Historical load shedding patterns
-
-### Prediction Process
-1. User provides location, date/time, and optional parameters
-2. System fetches real-time weather and grid data if needed
-3. Features are engineered and scaled using trained scaler
-4. Multiple models generate predictions with confidence scores
-5. Best prediction is selected and stored in user history
+- **6-hour prediction window**: Sufficient time for preparation
+- **Real-time feature engineering**: Grid capacity, weather, temporal patterns
 
 ---
 
-## 📈 Recent Updates
+## Project Structure
 
-### Latest Session (February 2024)
-- ✅ **Complete UI Redesign**: Clean minimalistic interface replacing dark theme
-- ✅ **Simplified Prediction Form**: Reduced to essential fields (city, date/time, humidity, demand)
-- ✅ **Session Management**: Automatic logout on token expiry with user notifications
-- ✅ **Prediction Fix**: Resolved issue where user input was overridden by cached data
-- ✅ **Cost Calculator**: New page for backup power solution analysis
-- ✅ **Homepage Redesign**: Single-page hero section with key features
-- ✅ **Mobile Optimization**: Improved responsive design across all pages
-
----
-
-## 🔮 Future Enhancements
-
-- [ ] **Real-time Notifications**: Push notifications for predicted load shedding
-- [ ] **Location Services**: GPS-based automatic location detection
-- [ ] **Advanced Analytics**: Trend analysis and accuracy metrics
-- [ ] **API Integration**: Direct integration with Eskom data feeds
-- [ ] **Multi-language Support**: Afrikaans and other local languages
-- [ ] **Mobile App**: Native iOS and Android applications
+```
+loadshedding-prediction-model/
+├── backend/api/               # FastAPI backend
+│   ├── app/                  # Main application code
+│   ├── tests/                # Test suite
+│   └── requirements.txt      # Python dependencies
+├── frontend/                 # React frontend
+│   ├── src/                 # Source code
+│   └── package.json         # Node dependencies
+├── docs/                    # Project documentation
+└── README.md               # This file
+```
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -204,7 +252,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 📧 Contact
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contact
 
 **Glen Miracle** - [GitHub](https://github.com/glenmiracle18)
 
@@ -212,4 +266,4 @@ Project Link: [https://github.com/glenmiracle18/loadshedding-prediction-model](h
 
 ---
 
-**Built with ❤️ for South African resilience**
+**Built for South African resilience**
