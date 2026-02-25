@@ -60,3 +60,27 @@ env/
 ENV/
 env.bak/
 venv.bak/
+
+# Test files and results
+*test*.py
+test_*/
+tests/
+*demo*.py
+performance_results.json
+coverage.xml
+.coverage
+.pytest_cache/
+.tox/
+
+# Documentation (keep only README and VIDEO_DEMO_SCRIPT)
+API_ENDPOINTS.md
+BACKEND_DOCUMENTATION.md
+DEPLOYMENT.md
+TEST_EXECUTION.md
+
+# Temporary scripts
+quick_*.py
+temp_*.py
+*_temp.py
+upload_*.py
+login_*.py
