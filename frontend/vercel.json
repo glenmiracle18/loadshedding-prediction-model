@@ -1,7 +1,6 @@
 {
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
-  "startCommand": "npm run preview",
   "outputDirectory": "dist/client",
   "framework": null,
   "rewrites": [
