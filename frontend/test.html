@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test Page</title>
+</head>
+<body>
+    <div id="root">
+        <h1 style="color: red; text-align: center; padding: 2rem;">
+            🚨 TEST PAGE - If you see this, HTML is working!
+        </h1>
+        <div style="text-align: center;">
+            <p>JavaScript loading test...</p>
+            <div id="js-test">❌ JavaScript not loaded</div>
+        </div>
+    </div>
+    
+    <script>
+        console.log('🔧 Test script loaded');
+        document.getElementById('js-test').innerHTML = '✅ JavaScript loaded successfully';
+        
+        // Test if main assets exist
+        fetch('/assets/main-B9wvvPyA.js')
+            .then(res => {
+                console.log('📦 Main JS fetch:', res.status);
+                if (!res.ok) console.error('❌ Main JS failed to load');
+            })
+            .catch(err => console.error('❌ Main JS error:', err));
+            
+        fetch('/assets/styles-DrOfarAT.css')
+            .then(res => {
+                console.log('🎨 CSS fetch:', res.status);
+                if (!res.ok) console.error('❌ CSS failed to load');
+            })
+            .catch(err => console.error('❌ CSS error:', err));
+    </script>
+</body>
+</html>
