@@ -15,7 +15,9 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart({
       deployment: {
-        preset: 'vercel'
+        preset: 'vercel',
+        serverEntry: 'app/server.tsx',
+        clientEntry: 'app/client.tsx'
       }
     }),
     viteReact(),
