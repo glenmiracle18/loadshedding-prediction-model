@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "vite dev --port 3000",
-    "build": "vite build && node scripts/generate-index.js",
+    "build": "vite build",
     "build:original": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -40,6 +40,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
+    "@netlify/vite-plugin-tanstack-start": "^1.2.12",
     "@tanstack/devtools-vite": "^0.3.11",
     "@tanstack/eslint-config": "^0.3.0",
     "@testing-library/dom": "^10.4.0",

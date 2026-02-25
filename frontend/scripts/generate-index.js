@@ -21,10 +21,11 @@ let cssFile = 'styles.css';
 if (fs.existsSync(assetsDir)) {
   const files = fs.readdirSync(assetsDir);
   
-  // Find the main JS file (usually the largest one with "main" in the name)
+  // Find the main JS file - this is the primary app entry point
   const jsFiles = files.filter(f => f.includes('main-') && f.endsWith('.js'));
   if (jsFiles.length > 0) {
     mainJsFile = `assets/${jsFiles[0]}`;
+    console.log('📦 Found main entry file:', mainJsFile);
   }
   
   // Find the CSS file
