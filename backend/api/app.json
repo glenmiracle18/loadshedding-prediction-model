@@ -1,0 +1,30 @@
+{
+  "name": "Load Shedding Prediction API",
+  "description": "AI-powered load shedding forecasting system for South Africa",
+  "repository": "https://github.com/glenmiracle18/loadshedding-prediction-model",
+  "logo": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png",
+  "keywords": ["fastapi", "machine-learning", "predictions", "south-africa"],
+  "stack": "container",
+  "env": {
+    "SECRET_KEY": {
+      "description": "Secret key for JWT token generation",
+      "generator": "secret"
+    },
+    "DATABASE_URL": {
+      "description": "Database connection URL",
+      "value": "sqlite:///./loadshedding.db"
+    },
+    "HUGGINGFACE_TOKEN": {
+      "description": "Hugging Face API token for model access",
+      "required": false
+    },
+    "WEATHER_API_KEY": {
+      "description": "OpenWeatherMap API key",
+      "required": false
+    },
+    "REDIS_URL": {
+      "description": "Redis connection URL for caching",
+      "required": false
+    }
+  }
+}

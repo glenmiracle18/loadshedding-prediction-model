@@ -44,8 +44,9 @@ app = FastAPI(
     title="Load Shedding Prediction API",
     description="ML-powered load shedding prediction system for South Africa",
     version="1.0.0",
-    docs_url="/api-docs",
+    docs_url="/docs",
     redoc_url="/redoc",
+    openapi_url="/openapi.json",
     lifespan=lifespan
 )
 
@@ -70,7 +71,7 @@ def read_root():
         "message": "Load Shedding Prediction API",
         "status": "active",
         "version": "1.0.0",
-        "docs": "/api-docs",
+        "docs": "/docs",
         "timestamp": datetime.utcnow().isoformat()
     }
 
@@ -137,7 +138,7 @@ def api_status():
             "batch_predictions": True
         },
         "endpoints": {
-            "docs": "/api-docs",
+            "docs": "/docs",
             "health": "/health",
             "auth": "/api/v1/auth",
             "predictions": "/api/v1/predictions"
