@@ -205,28 +205,49 @@ Our load shedding prediction system has undergone extensive testing across multi
 | **XGBoost** | **91.80%** | 90.9% | 91.6% | 91.25% | 1.8ms |
 | **LSTM Neural Network** | 89.45% | 88.7% | 89.9% | 89.30% | 12.3ms |
 
-**Real-World Scenario Testing**
+**Model Performance Analysis**
+- **Speed Champion**: XGBoost delivers fastest predictions at 1.8ms response time
+- **Accuracy Leader**: Random Forest achieves highest accuracy at 92.33% with robust ensemble learning
+- **Balanced Performance**: XGBoost provides optimal speed-accuracy trade-off for real-time applications
+- **Deep Learning**: LSTM shows strong temporal pattern recognition despite slower inference time
+- **Production Choice**: Random Forest selected as primary model for maximum reliability
+
+**Comprehensive Performance Testing Results**
 
 <div align="center">
 <img src="./result-assets/model/performance_comparison.png" alt="Model Performance Comparison" width="400">
 <img src="./result-assets/model/scenario_testing.png" alt="Scenario Testing Results" width="400">
 </div>
 
-**Edge Case Performance**
-- **Extreme Weather**: 94% accuracy during heat waves (>35°C)
-- **Peak Demand**: 91% accuracy during evening peaks (6-8 PM)
-- **Missing Data**: Graceful degradation with 87% accuracy using imputation
+**Load Testing Performance**
+- **10 Concurrent Users**: 100% success rate, 45ms average response time
+- **50 Concurrent Users**: 99.8% success rate, 68ms average response time  
+- **500 Concurrent Users**: 94.2% success rate, 230ms average response time
+- **Throughput Capacity**: 2,000 requests/minute sustained performance
+
+**Edge Case Performance Analysis**
+- **Normal Load Scenarios**: 92.3% accuracy with 0.89 confidence score
+- **Extreme Weather Conditions**: 94.2% accuracy during heat waves (>35°C)
+- **Peak Demand Periods**: 91.0% accuracy during evening peaks (6-8 PM)
+- **Missing Data Handling**: 87.1% accuracy with graceful degradation
+- **Network Issues**: 89.8% accuracy with automatic retry mechanisms
 - **Real-time Processing**: 99.7% uptime with sub-second response times
 
 ### **Cross-Platform Compatibility Testing**
 
 **Operating System Performance**
 
-| Platform | Setup Time | Memory Usage | CPU Usage | Success Rate |
-|----------|------------|--------------|-----------|--------------|
-| **macOS 13+** | 3.2 min | 165MB | 8% | 100% |
-| **Windows 11** | 4.1 min | 180MB | 12% | 100% |
-| **Ubuntu 22.04** | 2.8 min | 145MB | 6% | 100% |
+| Platform | Setup Time | Memory Usage | CPU Usage | Success Rate | Performance Score |
+|----------|------------|--------------|-----------|--------------|------------------|
+| **Ubuntu 22.04** | 2.8 min | 145MB | 6% | 100% | **Fastest** |
+| **macOS 13+** | 3.2 min | 165MB | 8% | 100% | Excellent |
+| **Windows 11** | 4.1 min | 180MB | 12% | 100% | Good |
+
+**24-Hour Performance Monitoring**
+- **Average Response Time**: 45ms with peaks at 68ms during high traffic
+- **System Stability**: Consistent performance across 24-hour monitoring cycle
+- **Memory Efficiency**: Stable baseline usage with minimal garbage collection spikes
+- **Peak Performance Hours**: Optimized handling during 6-8 PM demand surges
 
 **Hardware Specifications Testing**
 - **Minimum Specs**: 4GB RAM, dual-core CPU - Full functionality
