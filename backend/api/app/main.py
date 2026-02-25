@@ -1,41 +1,42 @@
-from fastapi import FastAPI, Depends
-from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from datetime import datetime
+
+from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from .core.config import settings
 from .models.database import engine
 from .models.models import Base
 from .routers import auth, predictions
-from .services.ml_service import ml_service
-from .services.cache_service import cache_service
 from .schemas.schemas import HealthResponse
+from .services.cache_service import cache_service
+from .services.ml_service import ml_service
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan events"""
     # Startup
-    print("🚀 Starting Load Shedding Prediction API...")
-    
+    print(" Starting Load Shedding Prediction API...")
+
     # Create database tables
     try:
         Base.metadata.create_all(bind=engine)
         print("✅ Database tables created/verified")
     except Exception as e:
         print(f"❌ Database initialization error: {e}")
-    
+
     # Initialize ML service
-    print(f"🤖 ML Service initialized with {len(ml_service.models)} models")
-    
+    print(f"✅ ML Service initialized with {len(ml_service.models)} models")
+
     # Test cache connection
     cache_health = cache_service.health_check()
-    print(f"📦 Cache service: {cache_health['status']}")
-    
+    print(f" Cache service: {cache_health['status']}")
+
     print("✅ Application startup complete!")
-    
+
     yield
-    
+
     # Shutdown
     print("🛑 Shutting down Load Shedding Prediction API...")
 
@@ -47,7 +48,7 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json",
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
 # CORS Configuration
@@ -72,7 +73,7 @@ def read_root():
         "status": "active",
         "version": "1.0.0",
         "docs": "/docs",
-        "timestamp": datetime.utcnow().isoformat()
+        "timestamp": datetime.utcnow().isoformat(),
     }
 
 
@@ -82,45 +83,53 @@ def health_check():
     try:
         # Check database connection
         from .models.database import SessionLocal
+
         db = SessionLocal()
         try:
             from sqlalchemy import text
+
             db.execute(text("SELECT 1 as health_check"))
             db_status = "healthy"
         except Exception as e:
             db_status = f"unhealthy: {str(e)}"
         finally:
             db.close()
-        
+
         # Check cache service
         cache_health = cache_service.health_check()
         cache_status = cache_health["status"]
-        
+
         # Check ML models
         ml_status = ml_service.get_model_status()
-        
+
         # Overall status
-        overall_status = "healthy" if all([
-            db_status == "healthy",
-            cache_status in ["healthy", "disconnected"],  # Cache is optional
-            ml_status["models_loaded"] >= 0  # At least fallback works
-        ]) else "unhealthy"
-        
+        overall_status = (
+            "healthy"
+            if all(
+                [
+                    db_status == "healthy",
+                    cache_status in ["healthy", "disconnected"],  # Cache is optional
+                    ml_status["models_loaded"] >= 0,  # At least fallback works
+                ]
+            )
+            else "unhealthy"
+        )
+
         return HealthResponse(
             status=overall_status,
             timestamp=datetime.utcnow(),
             database=db_status,
             cache=cache_status,
-            ml_models=ml_status
+            ml_models=ml_status,
         )
-        
+
     except Exception as e:
         return HealthResponse(
             status="unhealthy",
             timestamp=datetime.utcnow(),
             database="unknown",
             cache="unknown",
-            ml_models={"error": str(e)}
+            ml_models={"error": str(e)},
         )
 
 
@@ -135,13 +144,13 @@ def api_status():
             "ml_predictions": True,
             "caching": cache_service.is_connected,
             "external_apis": True,
-            "batch_predictions": True
+            "batch_predictions": True,
         },
         "endpoints": {
             "docs": "/docs",
             "health": "/health",
             "auth": "/api/v1/auth",
-            "predictions": "/api/v1/predictions"
+            "predictions": "/api/v1/predictions",
         },
-        "timestamp": datetime.utcnow().isoformat()
+        "timestamp": datetime.utcnow().isoformat(),
     }
