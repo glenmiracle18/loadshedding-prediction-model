@@ -5,7 +5,7 @@
 
 ## Live Demo
 
-**[Live Application](https://your-app-url.com)** - View the deployed app  
+**[Live Application](https://loadshedding-prediction-model-mq71.vercel.app/)** - View the deployed app  
 **[Demo Video](https://your-video-url.com)** - 5-minute walkthrough
 
 ## Related Project Files
