@@ -51,22 +51,35 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setSessionExpiredCallback(handleSessionExpiry)
     
     const token = getToken()
+    console.log('Initializing auth, token found:', !!token)
     if (token) {
       validateToken()
     } else {
+      console.log('No token found, setting loading to false')
       setLoading(false)
     }
   }, [handleSessionExpiry])
 
   const validateToken = async () => {
     try {
+      console.log('Validating token on refresh...')
       const response = await authApi.getCurrentUser()
+      console.log('getCurrentUser response:', response)
+      
       if (response.success && response.data) {
+        console.log('Token valid, setting user:', response.data)
         setUser(response.data)
       } else {
         // Token is invalid, remove it
-        removeToken()
-        setUser(null)
+        console.log('Token invalid, removing token. Error:', response.error)
+        if (response.error?.includes('Session expired')) {
+          // Don't trigger session expired notification on refresh
+          removeToken()
+          setUser(null)
+        } else {
+          removeToken()
+          setUser(null)
+        }
       }
     } catch (error) {
       console.error('Token validation failed:', error)

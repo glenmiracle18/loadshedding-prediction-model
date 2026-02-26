@@ -36,7 +36,7 @@ const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           type="button"
           ref={ref}
           className={cn(
-            'flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50',
+            'flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50',
             className
           )}
           {...props}
@@ -56,7 +56,11 @@ export interface SelectValueProps {
 
 const SelectValue = ({ placeholder }: SelectValueProps) => {
   const { value } = useContext(SelectContext)
-  return <span>{value || placeholder}</span>
+  return (
+    <span className={value ? 'text-black' : 'text-gray-400'}>
+      {value || placeholder}
+    </span>
+  )
 }
 
 export interface SelectContentProps {

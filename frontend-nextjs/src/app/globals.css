@@ -25,9 +25,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Force placeholder text color for better contrast */
+/* Fix input and placeholder text colors for better contrast */
+input,
+textarea {
+  color: #000000 !important; /* Pure black for input text */
+}
+
 input::placeholder,
 textarea::placeholder {
-  color: #1f2937 !important; /* gray-800 */
+  color: #9ca3af !important; /* gray-400 for placeholder */
   opacity: 1 !important;
 }
