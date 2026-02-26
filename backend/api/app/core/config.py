@@ -22,8 +22,8 @@ class Settings(BaseSettings):
     MODEL_PATH: str = "./models"
     CACHE_TTL: int = 300  # 5 minutes
     
-    # CORS
-    ALLOWED_ORIGINS: list = ["http://localhost:3000", "http://localhost:8080"]
+    # CORS - Allow all origins for now, can be restricted later
+    ALLOWED_ORIGINS: list = ["*"]
     
     # Hugging Face
     HUGGINGFACE_TOKEN: Optional[str] = None

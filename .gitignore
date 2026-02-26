@@ -84,3 +84,6 @@ temp_*.py
 *_temp.py
 upload_*.py
 login_*.py
+
+# Frontend directories
+frontend/
