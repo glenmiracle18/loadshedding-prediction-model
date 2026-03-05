@@ -36,7 +36,7 @@ const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           type="button"
           ref={ref}
           className={cn(
-            'flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50',
+            'flex h-11 w-full items-center justify-between rounded border-2 border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 hover:border-slate-300 disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-slate-50',
             className
           )}
           {...props}
@@ -57,7 +57,7 @@ export interface SelectValueProps {
 const SelectValue = ({ placeholder }: SelectValueProps) => {
   const { value } = useContext(SelectContext)
   return (
-    <span className={value ? 'text-black' : 'text-gray-400'}>
+    <span className={value ? 'text-slate-800 font-medium' : 'text-slate-400'}>
       {value || placeholder}
     </span>
   )
@@ -71,7 +71,7 @@ export interface SelectContentProps {
 const SelectContent = ({ className, children }: SelectContentProps) => {
   return (
     <div className={cn(
-      'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 bg-white text-gray-900 shadow-md',
+      'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded border-2 border-slate-200 bg-white text-slate-800',
       className
     )}>
       {children}
@@ -94,7 +94,7 @@ export interface SelectLabelProps {
 
 const SelectLabel = ({ className, children }: SelectLabelProps) => {
   return (
-    <div className={cn('py-1.5 pl-8 pr-2 text-sm font-semibold', className)}>
+    <div className={cn('py-2 px-4 text-sm font-semibold text-slate-600', className)}>
       {children}
     </div>
   )
@@ -112,7 +112,7 @@ const SelectItem = ({ value, className, children }: SelectItemProps) => {
   return (
     <div
       className={cn(
-        'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900',
+        'relative flex w-full cursor-default select-none items-center rounded-lg py-2.5 px-4 text-sm font-medium outline-none hover:bg-amber-50 hover:text-amber-800 focus:bg-amber-50 focus:text-amber-800 transition-all duration-150',
         className
       )}
       onClick={() => onValueChange?.(value)}

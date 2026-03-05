@@ -65,90 +65,39 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white border border-gray-200 rounded-full mb-4">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur border border-white/20 rounded mb-4">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500"></div>
           </div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-display text-lg text-white/70">Loading dashboard...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-slate-900 px-6">
+      <div className="max-w-7xl mx-auto pt-24 pb-12">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="mb-12">
+          <h1 className="text-display text-4xl font-bold text-white mb-4">
             Welcome back, {user?.username}!
           </h1>
-          <p className="text-gray-600">
+          <p className="text-lg text-white/70">
             Monitor your load shedding predictions and system status
           </p>
         </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-600 text-sm">Total Predictions</p>
-                <p className="text-2xl font-bold text-gray-900">{predictions.length}</p>
-              </div>
-              <BarChart3 className="w-8 h-8 text-blue-600" />
-            </div>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-600 text-sm">System Status</p>
-                <p className="text-2xl font-bold text-green-600">
-                  {health?.status || 'Loading...'}
-                </p>
-              </div>
-              <Zap className="w-8 h-8 text-green-600" />
-            </div>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-600 text-sm">Avg Confidence</p>
-                <p className="text-2xl font-bold text-gray-900">
-                  {predictions.length > 0 
-                    ? `${((predictions.reduce((acc, pred) => acc + pred.confidence_score, 0) / predictions.length) * 100).toFixed(1)}%`
-                    : '0%'
-                  }
-                </p>
-              </div>
-              <TrendingUp className="w-8 h-8 text-blue-600" />
-            </div>
-          </div>
-
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-600 text-sm">Last Updated</p>
-                <p className="text-2xl font-bold text-gray-900">
-                  {new Date().toLocaleDateString()}
-                </p>
-              </div>
-              <Clock className="w-8 h-8 text-gray-600" />
-            </div>
-          </div>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Recent Predictions */}
-          <div className="lg:col-span-2 bg-white border border-gray-200 rounded-lg p-6">
+          <div className="lg:col-span-2 bg-white/10 backdrop-blur border border-white/20 rounded p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-gray-900">Recent Predictions</h2>
+              <h2 className="text-display text-2xl font-bold text-white">Recent Predictions</h2>
               <button
                 onClick={() => router.push('/history')}
-                className="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors"
+                className="text-amber-400 hover:text-amber-300 text-sm font-semibold transition-colors"
               >
                 View All
               </button>
@@ -156,13 +105,13 @@ export default function DashboardPage() {
 
             {predictions.length === 0 ? (
               <div className="text-center py-12">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
-                  <BarChart3 size={24} className="text-gray-500" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur border border-white/20 rounded mb-4">
+                  <BarChart3 size={24} className="text-white/60" />
                 </div>
-                <p className="text-gray-600 mb-4">No predictions yet</p>
+                <p className="text-white/70 text-lg mb-4">No predictions yet</p>
                 <button
                   onClick={() => router.push('/predict')}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                  className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded transition-colors"
                 >
                   Create Your First Prediction
                 </button>
@@ -174,30 +123,30 @@ export default function DashboardPage() {
                   return (
                     <div
                       key={prediction.id}
-                      className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors"
+                      className="p-4 bg-white/5 backdrop-blur border border-white/10 rounded hover:border-white/20 transition-colors"
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${stageInfo.bgColor}`}>
+                          <div className={`w-8 h-8 rounded flex items-center justify-center ${stageInfo.bgColor}`}>
                             <span className={`font-bold text-sm ${stageInfo.color}`}>
                               {prediction.predicted_stage}
                             </span>
                           </div>
                           <div>
-                            <h3 className={`font-medium ${stageInfo.color}`}>
+                            <h3 className={`font-semibold ${stageInfo.color}`}>
                               {stageInfo.label}
                             </h3>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-white/60">
                               {(prediction.confidence_score * 100).toFixed(1)}% confidence
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="flex items-center gap-1 text-gray-600 text-sm">
+                          <div className="flex items-center gap-1 text-white/60 text-sm">
                             <MapPin size={14} />
                             <span>{prediction.location}</span>
                           </div>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-white/40">
                             {new Date(prediction.created_at).toLocaleDateString()}
                           </p>
                         </div>
@@ -210,12 +159,12 @@ export default function DashboardPage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Quick Actions</h2>
+          <div className="bg-white/10 backdrop-blur border border-white/20 rounded p-6">
+            <h2 className="text-display text-2xl font-bold text-white mb-6">Quick Actions</h2>
             <div className="space-y-4">
               <button
                 onClick={() => router.push('/predict')}
-                className="w-full p-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center gap-3"
+                className="w-full p-4 bg-amber-500 hover:bg-amber-600 text-white rounded transition-colors flex items-center gap-3 font-semibold"
               >
                 <Zap size={20} />
                 <span>New Prediction</span>
@@ -223,7 +172,7 @@ export default function DashboardPage() {
               
               <button
                 onClick={() => router.push('/history')}
-                className="w-full p-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors flex items-center gap-3"
+                className="w-full p-4 bg-white/10 hover:bg-white/20 text-white rounded transition-colors flex items-center gap-3 font-medium"
               >
                 <BarChart3 size={20} />
                 <span>View History</span>
@@ -231,7 +180,7 @@ export default function DashboardPage() {
               
               <button
                 onClick={() => router.push('/costs')}
-                className="w-full p-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors flex items-center gap-3"
+                className="w-full p-4 bg-white/10 hover:bg-white/20 text-white rounded transition-colors flex items-center gap-3 font-medium"
               >
                 <TrendingUp size={20} />
                 <span>Cost Calculator</span>

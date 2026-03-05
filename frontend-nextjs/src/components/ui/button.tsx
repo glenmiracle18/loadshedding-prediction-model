@@ -2,28 +2,30 @@ import { forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
-  size?: 'default' | 'sm' | 'lg' | 'icon'
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link' | 'energy'
+  size?: 'default' | 'sm' | 'lg' | 'xl' | 'icon'
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className = '', variant = 'default', size = 'default', ...props }, ref) => {
-    const baseClasses = 'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
+    const baseClasses = 'inline-flex items-center justify-center whitespace-nowrap font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/20 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed'
     
     const variants = {
-      default: 'bg-blue-600 text-white hover:bg-blue-700',
-      destructive: 'bg-red-600 text-white hover:bg-red-700',
-      outline: 'border border-gray-300 bg-white hover:bg-gray-50',
-      secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-      ghost: 'hover:bg-gray-100 hover:text-gray-900',
-      link: 'text-blue-600 underline-offset-4 hover:underline',
+      default: 'bg-amber-500 text-white hover:bg-amber-600 transform hover:-translate-y-0.5 active:translate-y-0 rounded',
+      energy: 'bg-amber-500 text-white hover:bg-amber-600 transform hover:-translate-y-0.5 active:translate-y-0 rounded animate-pulse-energy',
+      destructive: 'bg-red-500 text-white hover:bg-red-600 transform hover:-translate-y-0.5 active:translate-y-0 rounded',
+      outline: 'border-2 border-slate-200 bg-white/80 text-slate-700 hover:bg-white hover:border-amber-300 hover:text-slate-900 rounded',
+      secondary: 'bg-slate-200 text-slate-700 hover:bg-slate-300 hover:text-slate-900 rounded',
+      ghost: 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded',
+      link: 'text-amber-500 hover:text-amber-600 underline-offset-4 hover:underline',
     }
     
     const sizes = {
-      default: 'h-10 px-4 py-2',
-      sm: 'h-9 rounded-md px-3',
-      lg: 'h-11 rounded-md px-8',
-      icon: 'h-10 w-10',
+      default: 'h-11 px-6 py-3 text-sm',
+      sm: 'h-9 px-4 py-2 text-sm',
+      lg: 'h-12 px-8 py-3 text-base',
+      xl: 'h-14 px-10 py-4 text-lg',
+      icon: 'h-11 w-11 p-0',
     }
     
     return (
