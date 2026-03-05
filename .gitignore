@@ -88,3 +88,14 @@ login_*.py
 
 # Frontend directories
 frontend/
+
+# Large media files (use external hosting)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+*.flv
+*.wmv
+public/assets/*.mp4
+public/assets/videos/
