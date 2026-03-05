@@ -67,7 +67,7 @@ npm run lint
 - **Typography**: Jost (body), Montserrat (headings) with larger text sizes for accessibility
 - **Styling**: Glassmorphism UI with minimal rounded corners, no shadows
 - **Components**: Consistent dark theme with white/amber accents across all pages
-- **Video Background**: Power-grid.mp4 on landing page only (not auth pages)
+- **Video Background**: External video hosting on landing page only (not auth pages)
 - **Forms**: Dark transparent cards with amber focus states and validation
 
 ### Machine Learning Integration

@@ -18,7 +18,7 @@ export default function Home() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/assets/power-grid.mp4" type="video/mp4" />
+        <source src="https://tcjrhk37ew.ufs.sh/f/CrHVRHXsIQGlRbxI7RL8gSUGMWYN1rHIDsZAEqb0PO4uBxif" type="video/mp4" />
       </video>
       
       {/* Dark Tint Overlay */}
